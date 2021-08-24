@@ -9,11 +9,23 @@ import { CorsHttpMethod, HttpMethod, HttpApi } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { CloudFrontWebDistribution } from '@aws-cdk/aws-cloudfront';
 
+// interface SimpleAppStackProps extends cdk.StackProps {
+//   envName?: string;
+// }
+
 export class SimpleApp2Stack extends cdk.Stack {
+  // constructor(scope: cdk.Construct, id: string, props?: SimpleAppStackProps) {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // Photos bucket
+
+    // const bucket = new Bucket(this, 'MySimpleAppBucket', {
+    //   encryption:
+    //     props?.envName === 'prod'
+    //       ? BucketEncryption.S3_MANAGED
+    //       : BucketEncryption.UNENCRYPTED,
+    // });
 
     const bucket = new Bucket(this, 'MySimpleAppBucket', {
       encryption: BucketEncryption.S3_MANAGED,
@@ -94,6 +106,26 @@ export class SimpleApp2Stack extends cdk.Stack {
       methods: [HttpMethod.GET],
       integration: lambdaIntegration,
     });
+
+    // new cdk.CfnOutput(this, 'MySimpleAppBucketNameExport', {
+    //   value: bucket.bucketName,
+    //   exportName: `MySimpleAppBucketName${props?.envName}`,
+    // });
+
+    // new cdk.CfnOutput(this, 'MyReactAppBucketNameExport', {
+    //   value: reactAppBucket.bucketName,
+    //   exportName: `MyReactAppBucketName${props?.envName}`,
+    // });
+
+    // new cdk.CfnOutput(this, 'MySimpleAppApiExport', {
+    //   value: httpApi.url!,
+    //   exportName: `MySimpleAppApi${props?.envName}`,
+    // });
+
+    // new cdk.CfnOutput(this, 'MyReactAppURLExport', {
+    //   value: reactCloudFront.distributionDomainName,
+    //   exportName: `MyReactAppURL${props?.envName}`,
+    // });
 
     new cdk.CfnOutput(this, 'MySimpleAppBucketNameExport', {
       value: bucket.bucketName,

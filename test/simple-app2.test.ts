@@ -8,6 +8,7 @@ import * as SimpleApp2 from '../lib/simple-app2-stack';
 
 import '@aws-cdk/assert/jest'; // jest matchers
 
+/*
 test('Simple App Stack: Complicated test', () => {
   const app = new cdk.App();
   // WHEN
@@ -49,6 +50,7 @@ test('Simple App Stack: Complicated test', () => {
     )
   );
 });
+*/
 
 test('Stack create a S3 Bucket resource', () => {
   // ARRANGE
